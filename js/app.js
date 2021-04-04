@@ -66,6 +66,7 @@ function fadeMode() {
 
 				menuBurger.classList.remove('active');
 				menuList.classList.remove('active');
+				bodyLock.classList.remove('lock');
 				dataScroll.classList.add('active');
 			}
 
@@ -118,7 +119,7 @@ function freeMode() {
 
 				menuBurger.classList.remove('active');
 				menuList.classList.remove('active');
-
+				bodyLock.classList.remove('lock');
 				dataScroll.classList.add('active');
 			}
 
