@@ -16,17 +16,19 @@ let screens = document.querySelectorAll('.page__screen');
 
 document.addEventListener("DOMContentLoaded", function () {
 	for (let screenContent of screenContents) {
-		if (screenContent.offsetHeight > window.innerHeight) {
+		if (screenContent.offsetHeight > window.innerHeight || window.innerWidth < 730) {
 			freeMode();
 		} else {
 			fadeMode();
 		}
 	}
+	
+	document.querySelector('[data-scroll]').click();
 });
 
 window.addEventListener('resize', function () {
 	for (let screenContent of screenContents) {
-		if (screenContent.offsetHeight > window.innerHeight) {
+		if (screenContent.offsetHeight > window.innerHeight || window.innerWidth < 730) {
 			freeMode();
 		} else {
 			fadeMode();
@@ -82,8 +84,6 @@ function fadeMode() {
 			}
 		}
 	}
-
-	document.querySelector('[data-scroll]').click();
 }
 //свободный режим (скрол)
 
@@ -127,7 +127,6 @@ function freeMode() {
 				behavior: 'smooth', // плавный скрол
 			});
 		}
-		document.querySelector('[data-scroll]').click();
 	}
 }
 //===============================================================//
