@@ -11,7 +11,16 @@ let swiper = new Swiper('.home-page__container', {
 	},
 
 	effect: 'fade',
+	autoplay: {
+        	delay: 1500,
+        	disableOnInteraction: false,
+      	},
 
 	autoHeight: true,
+	
+	autoplay: {
+        	delay: 1500,
+       		disableOnInteraction: false,
+        },
 
 });
