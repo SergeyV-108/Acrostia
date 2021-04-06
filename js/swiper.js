@@ -12,7 +12,7 @@ let swiper = new Swiper('.home-page__container', {
 
 	effect: 'fade',
 	autoplay: {
-        	delay: 1500,
+        	delay: 2000,
         	disableOnInteraction: false,
       	},
 
