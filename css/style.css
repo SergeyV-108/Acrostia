@@ -1231,6 +1231,19 @@ h6 {
   line-height: 1;
 }
 
+.fa-hand-pointer-o {
+  margin-left: 5px;
+  font-size: 24px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+@media (min-width: 1151px) {
+  .fa-hand-pointer-o {
+    display: none;
+  }
+}
+
 @media (min-width: 551px) {
   .comunication-contacts__details {
     display: -webkit-box;
