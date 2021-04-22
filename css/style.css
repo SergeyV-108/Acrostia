@@ -92,6 +92,7 @@ h6 {
   src: local("Lato Light"), local("Lato-Light"), url("../fonts/Lato/Lato-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Light.woff") format("woff"), url("../fonts/Lato/Lato-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -100,6 +101,7 @@ h6 {
   src: local("Lato Regular"), local("Lato-Regular"), url("../fonts/Lato/Lato-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Regular.woff") format("woff"), url("../fonts/Lato/Lato-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -108,6 +110,7 @@ h6 {
   src: local("Lato Bold"), local("Lato-Bold"), url("../fonts/Lato/Lato-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Bold.woff") format("woff"), url("../fonts/Lato/Lato-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -116,6 +119,7 @@ h6 {
   src: local("Lato Black"), local("Lato-Black"), url("../fonts/Lato/Lato-Black.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Black.woff") format("woff"), url("../fonts/Lato/Lato-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -124,6 +128,7 @@ h6 {
   src: local("Damion"), url("../fonts/Damion/Damion.eot?#iefix") format("embedded-opentype"), url("../fonts/Damion/Damion.woff2") format("woff2"), url("../fonts/Damion/Damion.woff") format("woff"), url("../fonts/Damion/Damion.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* ====================================== */
@@ -700,12 +705,17 @@ h6 {
 /* ==================== home-page end ================ */
 /* ==================== services-page ==================== */
 .services-page__cards {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+  -webkit-transform-style: flat;
+  transform-style: flat;
 }
 
 @media (max-width: 1170px) {
@@ -737,15 +747,71 @@ h6 {
           flex: 0 0 260px;
   height: 400px;
   padding: 45px 25px;
+  position: relative;
   text-align: center;
+  overflow: hidden;
   border-radius: 5px;
   background-color: rgba(200, 83, 91, 0.8);
+}
+
+@media (min-width: 1125px) {
+  .services-page__card:nth-child(1) {
+    -webkit-transform: rotateY(25deg);
+    transform: rotateY(25deg);
+    -webkit-box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  .services-page__card:nth-child(2) {
+    -webkit-transform: rotateY(15deg);
+    transform: rotateY(15deg);
+    -webkit-box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  .services-page__card:nth-child(3) {
+    -webkit-transform: rotateY(-15deg);
+    transform: rotateY(-15deg);
+    -webkit-box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  .services-page__card:nth-child(4) {
+    -webkit-transform: rotateY(-25deg);
+    transform: rotateY(-25deg);
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 @media (max-width: 1170px) {
   .services-page__card {
     margin-right: 15px;
   }
+}
+
+.services-page__card:before {
+  content: "";
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  z-index: 2;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(179, 59, 59, 0.103)), color-stop(rgba(255, 255, 255, 0.3)), to(rgba(179, 59, 59, 0.103)));
+  background-image: linear-gradient(rgba(179, 59, 59, 0.103), rgba(255, 255, 255, 0.3), rgba(179, 59, 59, 0.103));
+}
+
+.services-page__card:hover {
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.services-page__card:hover:before {
+  top: 400px;
 }
 
 .card-services__image {
@@ -855,6 +921,8 @@ h6 {
 
 .about-page__card:hover {
   background-color: #8a6a84;
+  -webkit-box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .about-page__card:hover .card-about__foto {
@@ -877,31 +945,25 @@ h6 {
   color: #df5c64;
 }
 
-.about-page__card:hover .card-about__btn_fb {
+.about-page__card:hover .card-about__btn {
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.about-page__card:hover .card-about__btn_fb {
   background-color: #4f689e;
 }
 
 .about-page__card:hover .card-about__btn_tw {
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: #74c7d5;
 }
 
 .about-page__card:hover .card-about__btn_gl {
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: #df5c64;
 }
 
 .about-page__card:hover .card-about__btn_in {
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: #3e61af;
 }
 
@@ -1434,33 +1496,35 @@ h6 {
   font-size: 16px;
   font-family: "Lato";
   color: #82c8bd;
-  line-height: 1.313;
+  line-height: 40px;
 }
 
 .comunication-contacts__form input:-ms-input-placeholder {
   font-size: 16px;
   font-family: "Lato";
   color: #82c8bd;
-  line-height: 1.313;
+  line-height: 40px;
 }
 
 .comunication-contacts__form input::-ms-input-placeholder {
   font-size: 16px;
   font-family: "Lato";
   color: #82c8bd;
-  line-height: 1.313;
+  line-height: 40px;
 }
 
 .comunication-contacts__form input::placeholder {
   font-size: 16px;
   font-family: "Lato";
   color: #82c8bd;
-  line-height: 1.313;
+  line-height: 40px;
 }
 
-.comunication-contacts__form input:focus {
-  color: #b5b5b5;
-  background-color: #f6f6f6;
+.comunication-contacts__form input::-moz-placeholder {
+  font-size: 16px;
+  font-family: "Lato";
+  color: #82c8bd;
+  line-height: 40px;
 }
 
 .comunication-contacts__form input:hover {
@@ -1515,9 +1579,11 @@ h6 {
   line-height: 1.313;
 }
 
-.comunication-contacts__form textarea:focus {
-  color: #b5b5b5;
-  background-color: #f6f6f6;
+.comunication-contacts__form textarea::-moz-placeholder {
+  font-size: 16px;
+  font-family: "Lato";
+  color: #82c8bd;
+  line-height: 1.313;
 }
 
 .comunication-contacts__form textarea:hover {
@@ -1568,7 +1634,12 @@ h6 {
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
   height: 100px;
-  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: #68a097;
 }
 
@@ -1589,6 +1660,7 @@ h6 {
   width: 60px;
   height: 60px;
   margin: 0 20px;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1610,6 +1682,32 @@ h6 {
 .footer__btn:hover {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.363);
           box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.363);
+}
+
+.footer__btn::after {
+  content: "";
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  -webkit-transition: -webkit-box-shadow 0.1s;
+  transition: -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
+}
+
+@media (max-width: 400px) {
+  .footer__btn::after {
+    width: 22vw;
+    height: 22vw;
+  }
+}
+
+.footer__btn:active::after {
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), inset -3px 3px 1em rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), inset -3px 3px 1em rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), inset -3px 3px 1em rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 500px) {
