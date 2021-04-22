@@ -11,8 +11,92 @@ menuBurger.addEventListener("click", function (e) {
 //===============================================================//
 //================== Функционал меню header =====================//
 let dataScrolls = document.querySelectorAll('[data-scroll]');
+let dataTargets = document.querySelectorAll('[data-target]');
 let screenContents = document.querySelectorAll('.screen-content');
 let screens = document.querySelectorAll('.page__screen');
+
+// Функция для добавления обработчика событий
+function addHandler(object, event, handler, useCapture) {
+	if (object.addEventListener) {
+		object.addEventListener(event, handler, useCapture ? useCapture : false);
+	} else if (object.attachEvent) {
+		object.attachEvent('on' + event, handler);
+	} else alert("Add handler is not supported");
+}
+// Добавляем обработчики
+/* Gecko */
+//addHandler(window, 'DOMMouseScroll', wheel);
+/* Opera */
+//addHandler(window, 'mousewheel', wheel);
+/* IE */
+//addHandler(document, 'mousewheel', wheel);
+let i = 0;
+console.log(dataScrolls[i]);
+console.log(dataScrolls[i + 1]);
+console.log(dataScrolls[i + 2]);
+console.log(dataScrolls[i + 3]);
+console.log(dataScrolls[i + 4]);
+/* for (; i < dataScrolls.length; i++) {
+	dataScrolls[0].click();
+} */
+
+// Обработчик события
+/* function wheel(event) {
+
+	var delta; // Направление скролла
+	// -1 - скролл вниз
+	// 1  - скролл вверх
+	event = event || window.event;
+	// Chrome работают со свойством wheelDelta
+	if (event.wheelDelta) {
+		delta = event.wheelDelta / 120;
+
+		let i = 0;
+		//let dataScroll = dataScrolls[i];
+		//while (i < dataScrolls.length) {
+
+		//dataScrolls[i].click();
+
+		if (delta < 0) {
+			do {
+				dataScrolls[i].click();
+				i++;
+			} while (i < dataScrolls.length); //{
+				
+				//dataScrolls[i+1].click();
+				//dataScrolls[i+2].click();
+				
+			//}
+			//alert(dataScroll);
+
+			//i = i + 1;
+
+			//dataScroll.classList.add('active');
+			//console.log(dataScrolls[i]);
+
+			//break;
+			//dataScroll.click();
+
+			//document.querySelector('[data-scroll]').click();
+		} else {
+			//while (i < dataScrolls.length) {
+				dataScrolls[i--].click();
+				//i--;
+				if (i < 1) {
+					i = 1
+				}
+			//}
+
+
+			//dataScroll.classList.remove('active');
+			//}
+
+		}
+	}
+	// Запрещаем обработку события браузером по умолчанию
+	
+
+} */
 
 document.addEventListener("DOMContentLoaded", function () {
 	for (let screenContent of screenContents) {
@@ -22,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			fadeMode();
 		}
 	}
-	
+
 	document.querySelector('[data-scroll]').click();
 });
 
@@ -37,8 +121,7 @@ window.addEventListener('resize', function () {
 });
 
 /* window.addEventListener('wheel', function () {
-	var elm = document.querySelector('#header');
-	var ms = new MenuSpy(elm);
+	
 }); */
 
 //режим смены экранов затуханием
@@ -69,6 +152,7 @@ function fadeMode() {
 				menuBurger.classList.remove('active');
 				menuList.classList.remove('active');
 				bodyLock.classList.remove('lock');
+
 				dataScroll.classList.add('active');
 			}
 
@@ -85,8 +169,8 @@ function fadeMode() {
 		}
 	}
 }
-//свободный режим (скрол)
 
+//свободный режим (скролл)
 function freeMode() {
 
 	for (let screen of screens) {
@@ -96,12 +180,6 @@ function freeMode() {
 	for (let screenContent of screenContents) {
 		screenContent.classList.add('free');
 	}
-
-	//============= Функционал меню header при скролле ==============//
-	/* var elm = document.querySelector('#header');
-	var ms = new MenuSpy(elm); */
-	//===============================================================// 
-
 
 	for (let dataScroll of dataScrolls) {
 		let dataScrollId = dataScroll.getAttribute("data-scroll");
@@ -120,6 +198,7 @@ function freeMode() {
 				menuBurger.classList.remove('active');
 				menuList.classList.remove('active');
 				bodyLock.classList.remove('lock');
+
 				dataScroll.classList.add('active');
 			}
 
@@ -127,7 +206,40 @@ function freeMode() {
 				behavior: 'smooth', // плавный скрол
 			});
 		}
+		document.querySelector('[data-scroll]').click();
 	}
+}
+
+// добавление/удаление класса "active" ссылкам меню header при скролле
+window.addEventListener('scroll', addClassDataScroll);
+
+function addClassDataScroll(params) {
+	//console.log(pageYOffset);//текущий скролл
+	for (let screenContent of screenContents) {
+		const screenHeight = screenContent.offsetHeight; //высота screen
+		const screenOffset = offset(screenContent).top; // позиция относительно верха
+		//console.log(screenOffset);
+		for (let dataTarget of dataTargets) {
+			let dataTargetId = dataTarget.getAttribute("data-target");
+			if (pageYOffset >= screenOffset && pageYOffset < (screenOffset + screenHeight)) {
+
+				if (dataTarget.classList.contains('active')) {
+					dataTarget.classList.remove('active');
+				}
+
+				if (screenContent.id == dataTargetId) {
+					dataTarget.classList.add('active');
+				}
+			}
+		}
+	}
+}
+
+function offset(el) {
+	const rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
 //===============================================================//
 //================= Функционал меню Portfolio ===================//
