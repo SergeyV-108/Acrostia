@@ -12,9 +12,6 @@
 	<!-- Подключение стилей слайдера -->
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-	<!-- Подключение иконок -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<link rel="stylesheet" href="css/style.css">
 
 	<title>Acrostia</title>
@@ -40,8 +37,8 @@
 							</li>
 							<li><a href="#" class="menu-header__link" data-target="services"
 									data-scroll="#services">Services</a></li>
-							<li><a href="#" class="menu-header__link" data-target="about"
-									data-scroll="#about">About</a></li>
+							<li><a href="#" class="menu-header__link" data-target="about" data-scroll="#about">About</a>
+							</li>
 							<li><a href="#" class="menu-header__link" data-target="work" data-scroll="#work">Work</a>
 							</li>
 							<li><a href="#" class="menu-header__link" data-target="contacts"
@@ -88,7 +85,11 @@
 									</div>
 								</div>
 								<div class="sliade-home__image">
-									<img src="image/home/1.jpg" alt="">
+									<picture>
+										<source srcset="image/home/1.avif" type="image/avif">
+										<source srcset="image/home/1.webp" type="image/webp">
+										<img src="image/home/1.jpg" alt="">
+									</picture>
 								</div>
 							</div>
 						</div>
@@ -174,13 +175,13 @@
 								<div class="card-about__position">General manager</div>
 								<div class="card-about__btns">
 									<a href="#" class="card-about__btn card-about__btn_fb"><i
-											class="fa fa-facebook-f"></i></a>
+											class="fab fa-facebook-f"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_tw"><i
-											class="fa fa-twitter"></i></a>
+											class="fab fa-twitter"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_gl"><i
-											class="fa fa-google-plus"></i></a>
+											class="fab fa-google-plus-g"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_in"><i
-											class="fa fa-linkedin"></i></a>
+											class="fab fa-linkedin-in"></i></a>
 								</div>
 							</div>
 							<div class="about-page__card card-about">
@@ -191,13 +192,13 @@
 								<div class="card-about__position">Design Master</div>
 								<div class="card-about__btns">
 									<a href="#" class="card-about__btn card-about__btn_fb"><i
-											class="fa fa-facebook-f"></i></a>
+											class="fab fa-facebook-f"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_tw"><i
-											class="fa fa-twitter"></i></a>
+											class="fab fa-twitter"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_gl"><i
-											class="fa fa-google-plus"></i></a>
+											class="fab fa-google-plus-g"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_in"><i
-											class="fa fa-linkedin"></i></a>
+											class="fab fa-linkedin-in"></i></a>
 								</div>
 							</div>
 							<div class="about-page__card card-about">
@@ -208,13 +209,13 @@
 								<div class="card-about__position">Developer Ninja</div>
 								<div class="card-about__btns">
 									<a href="#" class="card-about__btn card-about__btn_fb"><i
-											class="fa fa-facebook-f"></i></a>
+											class="fab fa-facebook-f"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_tw"><i
-											class="fa fa-twitter"></i></a>
+											class="fab fa-twitter"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_gl"><i
-											class="fa fa-google-plus"></i></a>
+											class="fab fa-google-plus-g"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_in"><i
-											class="fa fa-linkedin"></i></a>
+											class="fab fa-linkedin-in"></i></a>
 								</div>
 							</div>
 							<div class="about-page__card card-about">
@@ -225,13 +226,13 @@
 								<div class="card-about__position">SEO guru</div>
 								<div class="card-about__btns">
 									<a href="#" class="card-about__btn card-about__btn_fb"><i
-											class="fa fa-facebook-f"></i></a>
+											class="fab fa-facebook-f"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_tw"><i
-											class="fa fa-twitter"></i></a>
+											class="fab fa-twitter"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_gl"><i
-											class="fa fa-google-plus"></i></a>
+											class="fab fa-google-plus-g"></i></a>
 									<a href="#" class="card-about__btn card-about__btn_in"><i
-											class="fa fa-linkedin"></i></a>
+											class="fab fa-linkedin-in"></i></a>
 								</div>
 							</div>
 
@@ -488,10 +489,10 @@
 					</div>
 					<footer class="footer">
 						<div class="footer__btns">
-							<a href="#" class="footer__btn"><i class="fa fa-facebook-f"></i></a>
-							<a href="#" class="footer__btn"><i class="fa fa-twitter"></i></a>
-							<a href="#" class="footer__btn"><i class="fa fa-google-plus"></i></a>
-							<a href="#" class="footer__btn"><i class="fa fa-linkedin"></i></a>
+							<a href="#" class="footer__btn"><i class='fab fa-facebook-f'></i></a>
+							<a href="#" class="footer__btn"><i class="fab fa-twitter"></i></a>
+							<a href="#" class="footer__btn"><i class="fab fa-google-plus-g"></i></a>
+							<a href="#" class="footer__btn"><i class='fab fa-linkedin-in'></i></a>
 						</div>
 					</footer>
 				</section>
@@ -506,7 +507,10 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 	<script src="js/swiper.js"></script>
-	
+
+	<!-- Подключение иконок -->
+	<script src="https://kit.fontawesome.com/9e73be8edf.js" crossorigin="anonymous"></script>
+
 	<script src="js/app.js"></script>
 
 </body>
