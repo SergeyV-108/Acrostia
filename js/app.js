@@ -15,89 +15,6 @@ let dataTargets = document.querySelectorAll('[data-target]');
 let screenContents = document.querySelectorAll('.screen-content');
 let screens = document.querySelectorAll('.page__screen');
 
-// Функция для добавления обработчика событий
-function addHandler(object, event, handler, useCapture) {
-	if (object.addEventListener) {
-		object.addEventListener(event, handler, useCapture ? useCapture : false);
-	} else if (object.attachEvent) {
-		object.attachEvent('on' + event, handler);
-	} else alert("Add handler is not supported");
-}
-// Добавляем обработчики
-/* Gecko */
-//addHandler(window, 'DOMMouseScroll', wheel);
-/* Opera */
-//addHandler(window, 'mousewheel', wheel);
-/* IE */
-//addHandler(document, 'mousewheel', wheel);
-let i = 0;
-console.log(dataScrolls[i]);
-console.log(dataScrolls[i + 1]);
-console.log(dataScrolls[i + 2]);
-console.log(dataScrolls[i + 3]);
-console.log(dataScrolls[i + 4]);
-/* for (; i < dataScrolls.length; i++) {
-	dataScrolls[0].click();
-} */
-
-// Обработчик события
-/* function wheel(event) {
-
-	var delta; // Направление скролла
-	// -1 - скролл вниз
-	// 1  - скролл вверх
-	event = event || window.event;
-	// Chrome работают со свойством wheelDelta
-	if (event.wheelDelta) {
-		delta = event.wheelDelta / 120;
-
-		let i = 0;
-		//let dataScroll = dataScrolls[i];
-		//while (i < dataScrolls.length) {
-
-		//dataScrolls[i].click();
-
-		if (delta < 0) {
-			do {
-				dataScrolls[i].click();
-				i++;
-			} while (i < dataScrolls.length); //{
-				
-				//dataScrolls[i+1].click();
-				//dataScrolls[i+2].click();
-				
-			//}
-			//alert(dataScroll);
-
-			//i = i + 1;
-
-			//dataScroll.classList.add('active');
-			//console.log(dataScrolls[i]);
-
-			//break;
-			//dataScroll.click();
-
-			//document.querySelector('[data-scroll]').click();
-		} else {
-			//while (i < dataScrolls.length) {
-				dataScrolls[i--].click();
-				//i--;
-				if (i < 1) {
-					i = 1
-				}
-			//}
-
-
-			//dataScroll.classList.remove('active');
-			//}
-
-		}
-	}
-	// Запрещаем обработку события браузером по умолчанию
-	
-
-} */
-
 document.addEventListener("DOMContentLoaded", function () {
 	for (let screenContent of screenContents) {
 		if (screenContent.offsetHeight > window.innerHeight || window.innerWidth < 730) {
@@ -119,10 +36,6 @@ window.addEventListener('resize', function () {
 		}
 	}
 });
-
-/* window.addEventListener('wheel', function () {
-	
-}); */
 
 //режим смены экранов затуханием
 function fadeMode() {
