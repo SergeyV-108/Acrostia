@@ -818,6 +818,11 @@ h6 {
   margin-bottom: 25px;
 }
 
+.card-services__image img {
+  width: 140px;
+  height: 140px;
+}
+
 .card-services__title {
   margin-bottom: 40px;
   font-size: 30px;
