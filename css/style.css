@@ -1298,7 +1298,7 @@ h6 {
   line-height: 1;
 }
 
-.fa-hand-pointer-o {
+.fa.fa-hand-pointer-o {
   margin-left: 5px;
   font-size: 24px;
   -webkit-transform: rotate(90deg);
@@ -1306,7 +1306,7 @@ h6 {
 }
 
 @media (min-width: 1151px) {
-  .fa-hand-pointer-o {
+  .fa.fa-hand-pointer-o {
     display: none;
   }
 }
