@@ -15,7 +15,51 @@ let dataTargets = document.querySelectorAll('[data-target]');
 let screenContents = document.querySelectorAll('.screen-content');
 let screens = document.querySelectorAll('.page__screen');
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener('wheel', scrollMode);
+
+let n = 0;
+showSection();
+
+function showSection() {
+	for (let i = 0; i < dataScrolls.length; i++) {
+		dataScrolls[i].classList.remove('active');
+	}
+	dataScrolls[n].classList.add('active');
+
+	let dataScrollId = dataScrolls[n].getAttribute("data-scroll");
+	let sectionId = document.querySelector(dataScrollId);
+	let screensContent = document.querySelectorAll('.screen-content');
+
+	for (let screenContent of screensContent) {
+		if (screenContent.classList.contains('active')) {
+			screenContent.classList.remove('active');
+		}
+		if (screenContent.id == sectionId.id) {
+			screenContent.classList.add('active');
+		}
+	}
+}
+
+function scrollMode(event) {
+	if (event.deltaY * 2.5) {
+		if (event.deltaY > 0) {
+			++n;
+			if (n >= dataScrolls.length) { n = dataScrolls.length - 1; }
+
+			showSection();
+		} else {
+			--n;
+			if (n <= 0) { n = 0; }
+
+			showSection();
+		}
+	}
+}
+
+window.addEventListener("load", changeModes);
+window.addEventListener('resize', changeModes);
+
+function changeModes() {
 	for (let screenContent of screenContents) {
 		if (screenContent.offsetHeight > window.innerHeight || window.innerWidth < 730) {
 			freeMode();
@@ -23,19 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			fadeMode();
 		}
 	}
-
-	document.querySelector('[data-scroll]').click();
-});
-
-window.addEventListener('resize', function () {
-	for (let screenContent of screenContents) {
-		if (screenContent.offsetHeight > window.innerHeight || window.innerWidth < 730) {
-			freeMode();
-		} else {
-			fadeMode();
-		}
-	}
-});
+}
 
 //режим смены экранов затуханием
 function fadeMode() {
@@ -127,14 +159,14 @@ function freeMode() {
 window.addEventListener('scroll', addClassDataScroll);
 
 function addClassDataScroll(params) {
-	//console.log(pageYOffset);//текущий скролл
+	//console.log(window.pageYOffset);//текущий скролл
 	for (let screenContent of screenContents) {
 		const screenHeight = screenContent.offsetHeight; //высота screen
-		const screenOffset = offset(screenContent).top; // позиция относительно верха
-		//console.log(screenOffset);
+		const screenOffset = screenContent.offsetTop; // позиция относительно верха
+
 		for (let dataTarget of dataTargets) {
 			let dataTargetId = dataTarget.getAttribute("data-target");
-			if (pageYOffset >= screenOffset && pageYOffset < (screenOffset + screenHeight)) {
+			if (window.pageYOffset >= screenOffset && window.pageYOffset < (screenOffset + screenHeight)) {
 
 				if (dataTarget.classList.contains('active')) {
 					dataTarget.classList.remove('active');
